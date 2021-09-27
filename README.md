@@ -25,13 +25,18 @@ Framework: Symfony
 
 >git init
 >git add --all
->add to .gitignore .env config files
->git commit -m"1. Start"
->Install and sign in "GitHub Pull Request and Issues Extention"
->git remote add origin [Beaverly on GIT](https://github.com/woodeg/Beaverly.git)
+>git commit -m"v0.0.1. Start"
+>git remote add origin <https://github.com/woodeg/Beaverly.git>
 >git pull
 >git push origin master
+>
+>[Beaverly on GIT](https://github.com/woodeg/Beaverly.git)
 
 * Add User entity: *symfony console make:user*
 * Add attributs **firstName, lastName, isActive, userDescription** to User entity: *symfony console make:entity User*
+* Add attribut **plainPassword** to User entity
+* Add to GIT
+* Adjust database link at .env
+* Create database *symfony console doctrine:database:create*
+* Force database *symfony console doctrine:schema:update --force*
 * Add to GIT
