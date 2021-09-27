@@ -52,3 +52,10 @@ Framework: Symfony
 * Add Bootstrap 5
 * Tests
 * Add to GIT
+* Install fixtures *composer require --dev orm-fixtures*
+* Make fixtures
+* Load fixtures: *symfony console doctrine:fixtures:load*
+* Make registration form *symfony console make:registration-form*
+* Change role hierarchy
+* Delete default "ROLE_USER" role from User entity
+* Add to GIT
