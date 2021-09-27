@@ -24,10 +24,15 @@ Framework: Symfony
 * GIT:
 
 >git init
+>
 >git add --all
+>
 >git commit -m"v0.0.1. Start"
+>
 >git remote add origin <https://github.com/woodeg/Beaverly.git>
+>
 >git pull
+>
 >git push origin master
 >
 >[Beaverly on GIT](https://github.com/woodeg/Beaverly.git)
@@ -37,6 +42,13 @@ Framework: Symfony
 * Add attribut **plainPassword** to User entity
 * Add to GIT
 * Adjust database link at .env
-* Create database *symfony console doctrine:database:create*
-* Force database *symfony console doctrine:schema:update --force*
+* Create database: *symfony console doctrine:database:create*
+* Force database: *symfony console doctrine:schema:update --force*
+* Add to GIT
+* Create Authorization: *symfony console make:auth*
+* Change SecurityController and UserAuthenticator
+* Set roles at security.yaml
+* Create MainController
+* Add Bootstrap 5
+* Tests
 * Add to GIT
