@@ -18,7 +18,7 @@ Framework: Symfony
 
 ### Start
 
-#### 27.09.2021
+#### 11.10.2021
 
 * New project: *composer create-project symfony/website-skeleton Beaverly*
 * GIT:
@@ -58,4 +58,15 @@ Framework: Symfony
 * Make registration form *symfony console make:registration-form*
 * Change role hierarchy
 * Delete default "ROLE_USER" role from User entity
+* Add to GIT
+
+#### 12.10.2021
+
+* Udpade login template
+* Change depricated UserPasswordEncoderInterface to new UserPasswordHasherInterface
+* Change RegistrationController
+* Change AppFixtures
+* Add background to login template
+* Udpade login template
+* Add custom.scss
 * Add to GIT
