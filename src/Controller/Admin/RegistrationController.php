@@ -17,11 +17,12 @@ class RegistrationController extends AbstractController
      */
     public function registeration(Request $request, UserPasswordHasherInterface $passwordEncoder): Response
     {
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) 
+        if ($form->isSubmitted() && $form->isValid()/*  && $contactForm->isSubmitted() && $contactForm->isValid() */) 
         {
             // encode the plain password
             $user->setPassword(

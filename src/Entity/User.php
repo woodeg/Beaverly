@@ -65,6 +65,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $userDescription;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="users")
+     */
+    private $groups;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Contact::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $contact;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -201,6 +212,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserDescription(?string $userDescription): self
     {
         $this->userDescription = $userDescription;
+
+        return $this;
+    }
+
+    public function getGroups(): ?Group
+    {
+        return $this->groups;
+    }
+
+    public function setGroups(?Group $groups): self
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    public function getContact(): ?Contact
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?Contact $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }

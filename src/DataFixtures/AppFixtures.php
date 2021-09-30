@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
+use App\Entity\Group;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -18,6 +20,29 @@ class AppFixtures extends Fixture
     
     public function load(ObjectManager $manager)
     {
+        $group = new Group();
+        $group->setGroupName('Admins');
+        $group->setIsActive(true);
+
+        $manager->persist($group);
+        $manager->flush();
+
+
+        $contact = new Contact;
+        $contact->setCountry('Germany');
+        $contact->setRegion('SH');
+        $contact->setCity('Neumünster');
+        $contact->setPostCode('24534');
+        $contact->setStreet('Haart');
+        $contact->setHouse('45');
+        $contact->setEmail('e-mail@e-mail.com');
+        $contact->setWebpage('www.www.com');
+        $contact->setDescription('Some test text here');
+
+        $manager->persist($contact);
+        $manager->flush();
+
+
         $product = new User();
         $product->setUsername('admin');
         $product->setPassword($this->hasher->hashPassword($product, '333'));
@@ -26,9 +51,12 @@ class AppFixtures extends Fixture
         $product->setIsActive(true);
         $product->setRoles(['ROLE_ADMIN']);
         $product->setUserDescription('Test User/Administrator from Fixtures');
+        $product->setGroups($group);
+        $product->setContact($contact);
 
         $manager->persist($product);
-
         $manager->flush();
+
+        
     }
 }

@@ -70,3 +70,12 @@ Framework: Symfony
 * Udpade login template
 * Add custom.scss
 * Add to GIT
+* Create Group entity *symfony console make:entity Group*
+* Force database *symfony console doctrine:schema:update --force*
+* Create TestController *symfony console make:controller TestController*
+* Tests
+* Add groups to Registration form
+* Make Contact entity *symfony console make:entity Contact*
+* Force database *symfony console doctrine:schema:update --force*
+* Tests
+* Add to GIT
