@@ -1,0 +1,101 @@
+<div class="position-fixed col-auto col-md-3 col-xl-2 px-sm-2 bg-dark left-nav-panel">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        
+        <svg class="logo-svg pb-4" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 72.7 48.8" style="enable-background:new 0 0 72.7 48.8;" xml:space="preserve">
+        <polygon class="st0" points="25.3,10.9 20.7,26.8 20.6,26.8 15.9,10.9 6.9,10.9 6.9,36.6 12.2,36.6 12.2,15.7 18.4,36 22.8,36 
+            29,15.7 29,36.6 34.3,36.6 34.3,10.9 "/>
+        <polygon class="st0" points="66.7,3.4 59.1,21.7 59.1,10.9 54,10.9 54,21.2 42.2,21.2 42.2,10.9 37.1,10.9 37.1,36.3 42.2,36.3 
+            42.2,25.4 54,25.4 54,34.1 49.7,44.4 51.2,44.4 68.2,3.4 "/>
+        </svg>
+
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+            
+            <li class="nav-item">
+                <a href="{{ path('home') }}" class="nav-link align-middle px-0">
+                    <ion-icon name="speedometer-outline"></ion-icon>
+                    <span class="ms-1 d-none d-sm-inline m-2 align-top">Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ path('project') }}" class="nav-link px-0 align-middle">
+                    <ion-icon name="briefcase-outline"></ion-icon>
+                    <span class="ms-1 d-none d-sm-inline align-top">Projekte</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ path('task') }}" class="nav-link px-0 align-middle">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <span class="ms-1 d-none d-sm-inline align-top">Tasks</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ path('company') }}" class="nav-link px-0 align-middle">
+                    <ion-icon name="briefcase-outline"></ion-icon>
+                    <span class="ms-1 d-none d-sm-inline align-top">Firmen</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ path('customer') }}" class="nav-link px-0 align-middle">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <span class="ms-1 d-none d-sm-inline align-top">Kunden</span>
+                </a>
+            </li>
+            
+
+            {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <hr>
+                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                    <ion-icon name="construct-outline"></ion-icon><span class="ms-1 d-none d-sm-inline align-top">Adminboard</span> </a>
+                    <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                    <li class="w-100">
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <span class="d-none d-sm-inline align-top">
+                                Users
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <span class="d-none d-sm-inline align-top">
+                                Groups
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <span class="d-none d-sm-inline align-top">
+                                Labels
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <span class="d-none d-sm-inline align-top">
+                                Types
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <span class="d-none d-sm-inline align-top">
+                                Statuses
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

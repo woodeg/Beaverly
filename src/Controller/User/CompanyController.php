@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MainController extends AbstractController
+class CompanyController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/user/company", name="company")
      */
     public function index(): Response
     {
-        
-        return $this->render('content/dashboard/dashboard.html.twig', [
-            'controller_name' => 'DashboardController',
+        return $this->render('content/company/company.html.twig', [
+            'controller_name' => 'CompanyController',
         ]);
     }
 }

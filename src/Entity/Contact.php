@@ -60,19 +60,24 @@ class Contact
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="contact")
-     */
-    private $users;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $city;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="contact")
+     */
+    private $company;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="contact")
+     */
+    private $customer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="contact")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -175,36 +180,6 @@ class Contact
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getContact() === $this) {
-                $user->setContact(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCity(): ?string
     {
         return $this->city;
@@ -213,6 +188,42 @@ class Contact
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): self
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

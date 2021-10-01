@@ -79,3 +79,31 @@ Framework: Symfony
 * Force database *symfony console doctrine:schema:update --force*
 * Tests
 * Add to GIT
+
+#### 13.10.2021
+
+* Create template tree
+* Make left panel navigation
+* Make top panel navigation
+* Make CompanyController and template
+* Make CustomerController and template
+* Make ProjectController and template
+* Make TaskController and template
+* Make AdminController and template
+* Change routes
+* Create Label entity
+* Create Status entity
+* Create Type entity
+* Create Company entity
+* Create Customer entity
+* Create Project entity
+* Create Task entity
+* Make relation between all entities
+* Add createdAt and updatedAt attributs to all entities
+* Force database *symfony console doctrine:schema:update --force*
+* Create company form
+* Tests
+
+#### 13.10.2021
+
+* Add to GIT

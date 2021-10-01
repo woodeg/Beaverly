@@ -1,0 +1,8 @@
+<nav class="navbar nav sticky-top navbar-light bg-success justify-content-end px-5">
+  <span>
+    Hallo {{ app.user.firstName }}!
+  </span>
+  <a href="{{ path('logout') }}" class="nav-link px-3">
+    Abmelden
+  </a>
+</nav>

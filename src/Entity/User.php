@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -71,10 +73,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $groups;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Contact::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user")
+     */
+    private $tasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="user")
      */
     private $contact;
+
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+        $this->contact = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -228,14 +240,62 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getContact(): ?Contact
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->removeElement($task)) {
+            // set the owning side to null (unless already changed)
+            if ($task->getUser() === $this) {
+                $task->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContact(): Collection
     {
         return $this->contact;
     }
 
-    public function setContact(?Contact $contact): self
+    public function addContact(Contact $contact): self
     {
-        $this->contact = $contact;
+        if (!$this->contact->contains($contact)) {
+            $this->contact[] = $contact;
+            $contact->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contact->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getUser() === $this) {
+                $contact->setUser(null);
+            }
+        }
 
         return $this;
     }

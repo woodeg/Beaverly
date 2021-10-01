@@ -1,2 +1,44 @@
 @import '../../framework/bootstrap-5.0.2/css/bootstrap.css';
 
+.container-fluid{
+    padding: 0;
+}
+
+.content{
+    margin-left: 25%;
+    margin-right: 5%;
+    margin-top: 5%;
+    border: 1px solid gray;
+}
+
+ion-icon {
+    font-size: 20px;
+    padding: 0;
+}
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: #198754;
+}
+
+.nav-link:focus{
+    color: #198754;
+}
+
+.logo-svg{
+    fill: white;
+    transition: 0.5s;
+}
+
+.logo-svg:hover{
+    fill: #198754;
+    transition: 0.5s;
+}
+
+hr{
+    width: 100%;
+    color: white;
+}
