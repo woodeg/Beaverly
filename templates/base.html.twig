@@ -25,7 +25,9 @@
             {% include "navigation/nav-top-panel.html.twig" %}
             {% include "navigation/nav-left-panel.html.twig" %}
             
-            {% block body %}{% endblock %}
+            <div class="content mb-5">
+                {% block body %}{% endblock %}
+            </div>
         </div>
     </body>
 </html>

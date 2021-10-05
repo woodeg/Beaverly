@@ -8,7 +8,6 @@
     margin-left: 25%;
     margin-right: 5%;
     margin-top: 5%;
-    border: 1px solid gray;
 }
 
 ion-icon {
@@ -41,4 +40,24 @@ ion-icon {
 hr{
     width: 100%;
     color: white;
+}
+
+.badge{
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+a{
+    color: #198754;
+    text-decoration: none;
+}
+
+tr{
+    background-color:none;
+    transition: 0.2s;
+}
+
+tr:hover{
+    background-color: #f8f9fa;
+    transition: 0.2s;
 }

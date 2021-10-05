@@ -99,11 +99,35 @@ Framework: Symfony
 * Create Project entity
 * Create Task entity
 * Make relation between all entities
-* Add createdAt and updatedAt attributs to all entities
+* Add *createdAt* and *updatedAt* attributs to all entities
 * Force database *symfony console doctrine:schema:update --force*
 * Create company form
 * Tests
 
-#### 13.10.2021
+#### 14.10.2021
 
+* Add to GIT
+* Create function for Adminboard
+* Add CRUD for Group
+* Add CRUD for Label
+* Add CRUD for Status
+* Add CRUD for Type
+* Add CRUD for Users
+* Add groups to user edit
+* Add password to user edit
+* Add to GIT
+
+#### 15.10.2021
+
+* Tests
+* Create CRUD for Companies
+* Change template
+* Create CRUD for Customers
+* Create Customer form
+* Change template
+* Tests
+* Add phoneNumber and mobileNumber attributs to Contact entity
+* Relate Customer and Company template
+* Add new contacts to Customers
+* Templates rework
 * Add to GIT

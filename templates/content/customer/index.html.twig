@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kunden{% endblock %}
+
+{% block body %}
+    <h1>Kunden</h1>
+    <a href="{{ path('customer_new') }}" class="btn btn-success">Neu</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Firma</th>
+                <th>Kontakt</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for customer in companies %}
+            <tr>
+                <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+                <td>
+                    <span class="badge bg-info text-dark">{{ customer.position }}</span>
+                </td>
+                <td>
+                    <a href="{{ path('company_show', {'id': customer.company.id}) }}">
+                        {{customer.company.companyName}}
+                    </a>
+                </td>
+                <td>
+                    {% for contact in customer.contact %}
+                    <div class="card">
+                        <div class="card-body">
+                            <address>
+                                {{ contact.street }}, {{ contact.house }} <br>
+                                {{ contact.postCode }} {{ contact.city }} <br>
+                                <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> <br>
+                                <a href="https://{{ contact.webpage }}" target="_blank">{{ contact.webpage }}</a><br>
+                                <a href="tel:{{contact.phoneNumber}}">Tel.: {{contact.phoneNumber}}</a><br>
+                                <a href="tel:{{contact.mobileNumber}}">Mobile: {{contact.mobileNumber}}</a><br>
+                            </address>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('customer_show', {'id': customer.id}) }}" class="btn btn-success btn-sm m-1">show</a>
+                    <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="btn btn-success btn-sm m-1">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

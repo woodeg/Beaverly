@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Label index{% endblock %}
+
+{% block body %}
+    <h1>Label index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>LabelName</th>
+                <th>IsActive</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for label in labels %}
+            <tr>
+                <td>{{ label.id }}</td>
+                <td>{{ label.labelName }}</td>
+                <td>{{ label.isActive ? 'Yes' : 'No' }}</td>
+                <td>{{ label.createdAt ? label.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ label.updatedAt ? label.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_label_show', {'id': label.id}) }}">show</a>
+                    <a href="{{ path('admin_label_edit', {'id': label.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_label_new') }}">Create new</a>
+{% endblock %}

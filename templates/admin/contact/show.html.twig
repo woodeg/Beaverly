@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <h1>Contact</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contact.id }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ contact.country }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ contact.region }}</td>
+            </tr>
+            <tr>
+                <th>PostCode</th>
+                <td>{{ contact.postCode }}</td>
+            </tr>
+            <tr>
+                <th>Street</th>
+                <td>{{ contact.street }}</td>
+            </tr>
+            <tr>
+                <th>House</th>
+                <td>{{ contact.house }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ contact.email }}</td>
+            </tr>
+            <tr>
+                <th>Webpage</th>
+                <td>{{ contact.webpage }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ contact.description }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ contact.city }}</td>
+            </tr>
+            <tr>
+                <th>PhoneNumber</th>
+                <td>{{ contact.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>MobileNumber</th>
+                <td>{{ contact.mobileNumber }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_contact_index') }}">back to list</a>
+
+    <a href="{{ path('admin_contact_edit', {'id': contact.id}) }}">edit</a>
+
+    {{ include('admin/contact/_delete_form.html.twig') }}
+{% endblock %}

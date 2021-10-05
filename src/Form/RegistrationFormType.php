@@ -26,28 +26,31 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
-            ->add('isActive')
+            ->add('username', TextType::class, ['attr' => ['class' => 'form-control']])
+            ->add('firstName', TextType::class, ['attr' => ['class' => 'form-control']])
+            ->add('lastName', TextType::class, ['attr' => ['class' => 'form-control']])
+            ->add('isActive', CheckboxType::class, ['attr' => ['class' => 'form-check']])
             ->add('roles', ChoiceType::class, [
                     'choices' => [
-                        'ADMIN' => 'ROLE_ADMIN', 
+                        'ADMIN' => 'ROLE_ADMIN',
                         'USER' => 'ROLE_USER'
                     ],
                     'expanded' => true,
                     'multiple' => true,
+                    'attr' => ['class' => 'form-check p-0']
                 ]
             )
             ->add('groups', EntityType::class, [
                 'class' => Group::class, 
-                'choice_label' => 'groupName'
+                'choice_label' => 'groupName',
+                'attr' => ['class' => 'form-check']
             ])
-            ->add('userDescription', TextareaType::class)
+            ->add('userDescription', TextareaType::class, ['attr' => ['class' => 'form-control']])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
+                'first_options'  => array('label' => 'Password', 'attr' => ['class' => 'form-control']),
+                'second_options' => array('label' => 'Repeat Password', 'attr' => ['class' => 'form-control']),
+                'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -58,8 +61,9 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                
             ))
-            ->add('save', SubmitType::class, ['label' => 'Create User'])
+            ->add('save', SubmitType::class, ['label' => 'Create User', 'attr' => ['class' => 'btn btn-success mt-2']])
         ;
     }
 

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Type index{% endblock %}
+
+{% block body %}
+    <h1>Type index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TypeName</th>
+                <th>IsActive</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type in types %}
+            <tr>
+                <td>{{ type.id }}</td>
+                <td>{{ type.typeName }}</td>
+                <td>{{ type.isActive ? 'Yes' : 'No' }}</td>
+                <td>{{ type.createdAt ? type.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ type.updatedAt ? type.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_type_show', {'id': type.id}) }}">show</a>
+                    <a href="{{ path('admin_type_edit', {'id': type.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_type_new') }}">Create new</a>
+{% endblock %}

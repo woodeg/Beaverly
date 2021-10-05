@@ -79,6 +79,16 @@ class Contact
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=22, nullable=true)
+     */
+    private $phoneNumber;
+
+    /**
+     * @ORM\Column(type="string", length=22, nullable=true)
+     */
+    private $mobileNumber;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -224,6 +234,30 @@ class Contact
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(?string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getMobileNumber(): ?string
+    {
+        return $this->mobileNumber;
+    }
+
+    public function setMobileNumber(?string $mobileNumber): self
+    {
+        $this->mobileNumber = $mobileNumber;
 
         return $this;
     }

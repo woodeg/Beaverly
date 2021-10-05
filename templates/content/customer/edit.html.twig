@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit customer{% endblock %}
+
+{% block body %}
+    <h1>Edit {{customer.firstName}} {{customer.lastName}}</h1>
+
+    {{ include('content/customer/_form.html.twig') }}
+
+    {{ include('elements/buttons/backbutton.html.twig') }}
+
+    {{ include('content/customer/_delete_form.html.twig') }}
+{% endblock %}

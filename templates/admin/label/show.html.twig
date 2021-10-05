@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Label{% endblock %}
+
+{% block body %}
+    <h1>Label</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ label.id }}</td>
+            </tr>
+            <tr>
+                <th>LabelName</th>
+                <td>{{ label.labelName }}</td>
+            </tr>
+            <tr>
+                <th>IsActive</th>
+                <td>{{ label.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ label.createdAt ? label.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ label.updatedAt ? label.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_label_index') }}">back to list</a>
+
+    <a href="{{ path('admin_label_edit', {'id': label.id}) }}">edit</a>
+
+    {{ include('admin/label/_delete_form.html.twig') }}
+{% endblock %}

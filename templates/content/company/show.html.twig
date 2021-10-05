@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ company.companyName }}{% endblock %}
+
+{% block body %}
+    <h1>{{ company.companyName }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ company.companyName }}</td>
+            </tr>
+            <tr>
+                <th>Beschreibung</th>
+                <td>{{ company.companyDescription }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>
+                    <span class="badge bg-secondary">{{ company.label.labelName }}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>Projekte</th>
+                <td>
+                    {% for project in company.projects %}
+                    <a href="#">
+                        {{project.projectName}}
+                    </a>
+                    <br>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Ansprechspartner</th>
+                <td>
+                    {% for customer in company.customers %}
+                    <span class="badge bg-info text-dark">{{customer.position}}</span>
+                    <a href="{{ path('customer_show', {'id': customer.id}) }}">
+                        {{customer.firstName}} 
+                        {{customer.lastName}}
+                    </a>
+                    <br>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Kontakte</th>
+                <td colspan="3">
+                    <p>
+                        <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Adresse hinzufügen
+                        </a>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                                <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                    {% for contact in company.contact %}
+                        <address>
+                            {{ contact.street }}, {{ contact.house }} <br>
+                            {{ contact.postCode }} {{ contact.city }} <br>
+                            <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> <br>
+                            <a href="https://{{ contact.webpage }}" target="_blank">{{ contact.webpage }}</a><br>
+                            <a href="tel:{{contact.phoneNumber}}">Tel.: {{contact.phoneNumber}}</a><br>
+                            <a href="tel:{{contact.mobileNumber}}">Mobile: {{contact.mobileNumber}}</a><br>
+                            <form method="post" action="{{ path('admin_contact_delete', {'id': contact.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+                                <button class="btn btn-danger btn-sm mt-1">Kontakt löschen</button>
+                            </form>
+                        </address>
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('elements/buttons/backbutton.html.twig') }}
+
+    <a href="{{ path('company_edit', {'id': company.id}) }}" class="btn btn-success">Speichern</a>
+
+    {{ include('content/company/_delete_form.html.twig') }}
+{% endblock %}

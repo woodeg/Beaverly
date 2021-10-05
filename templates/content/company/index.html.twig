@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Firmen{% endblock %}
+
+{% block body %}
+    <h1>Firmen</h1>
+    <a href="{{ path('company_new') }}" class="btn btn-success">Neu</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Label</th>
+                <th colspan="2">Projekte</th>
+                <th>Ansprechspartner</th>
+                <th>Kontakte</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td>{{ company.companyName }}</td>
+
+                <td>
+                    <span class="badge bg-secondary">{{ company.label.labelName }}</span>
+                </td>
+
+                <td colspan="2">
+                    {% for project in company.projects %}
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="#">
+                                {{project.projectName}}
+                            </a>
+                            <br>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </td>
+
+                <td>
+                    {% for customer in company.customers %}
+                    <span class="badge bg-info text-dark">{{customer.position}}</span><br>
+                    <a href="{{ path('customer_show', {'id': customer.id}) }}">
+                        {{customer.firstName}} 
+                        {{customer.lastName}}
+                    </a>
+                    <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for contact in company.contact %}
+                    <div class="card">
+                        <div class="card-body">
+                            <address>
+                                {{ contact.street }}, {{ contact.house }} <br>
+                                {{ contact.postCode }} {{ contact.city }} <br>
+                                <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> <br>
+                                <a href="https://{{ contact.webpage }}" target="_blank">{{ contact.webpage }}</a><br>
+                                <a href="tel:{{contact.phoneNumber}}">Tel.: {{contact.phoneNumber}}</a><br>
+                                <a href="tel:{{contact.mobileNumber}}">Mobile: {{contact.mobileNumber}}</a><br>
+                            </address>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('company_show', {'id': company.id}) }}" class="btn btn-success btn-sm m-1">show</a>
+                    <a href="{{ path('company_edit', {'id': company.id}) }}" class="btn btn-success btn-sm m-1">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
