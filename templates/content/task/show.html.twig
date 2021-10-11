@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ task.taskName }}{% endblock %}
+
+{% block body %}
+    <h1>{{ task.taskName }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ task.taskName }}</td>
+            </tr>
+            <tr>
+                <th>Projekt</th>
+                <td>
+                    <a href="{{ path('project_show', {'id': task.project.id}) }}">
+                        {{task.project.projectName}}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>
+                    {{task.user.firstName}} {{task.user.lastName}} 
+                </td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>
+                    <span class="
+                    {% if task.status.statusName == "To do" %}
+                    badge bg-primary
+                    {% elseif task.status.statusName == "In progress" %}
+                    badge bg-success
+                    {% elseif task.status.statusName == "On Hold" %}
+                    badge bg-warning
+                    {% elseif task.status.statusName == "Problem" %}
+                    badge bg-danger
+                    {% else %}
+                    badge bg-secondary
+                    {% endif %}
+                    ">{{ task.status.statusName }}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>Deadline</th>
+                <td>
+                    {{ task.deadline|date("d/m/Y", "Europe/Berlin") }}
+                </td>
+            </tr>
+            <tr>
+                <th>Anfangsdatum</th>
+                <td>
+                    {{ task.createdAt|date("d/m/Y", "Europe/Berlin") }}
+                </td>
+            </tr>
+            <tr>
+                <th>Beschreibung</th>
+                <td>
+                    {{ task.taskDescription }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('elements/buttons/backbutton.html.twig') }}
+
+    <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-success">Bearbeiten</a>
+
+    {{ include('content/task/_delete_form.html.twig') }}
+{% endblock %}

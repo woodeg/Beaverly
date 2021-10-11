@@ -4,8 +4,12 @@ namespace App\Controller\User;
 
 use App\Entity\Company;
 use App\Entity\Contact;
+use App\Entity\Customer;
+use App\Entity\Project;
 use App\Form\CompanyType;
 use App\Form\ContactType;
+use App\Form\CustomerType;
+use App\Form\ProjectType;
 use App\Repository\CompanyRepository;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -61,8 +65,15 @@ class CompanyController extends AbstractController
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
-        
 
+        $customer = new Customer();
+        $form_customer = $this->createForm(CustomerType::class, $customer);
+        $form_customer->handleRequest($request);
+
+        $project = new Project();
+        $form_project = $this->createForm(ProjectType::class, $project);
+        $form_project->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) 
         {
             $contact->setCompany($company);
@@ -70,12 +81,39 @@ class CompanyController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
-            return $this->redirectToRoute('company', [], Response::HTTP_SEE_OTHER);
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
+        }
+
+        if ($form_customer->isSubmitted() && $form_customer->isValid()) 
+        {
+            $customer->setCompany($company);
+            $customer->setCreatedAt(new DateTimeImmutable('NOW'));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($customer);
+            $entityManager->flush();
+
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
+        }
+
+        if ($form_project->isSubmitted() && $form_project->isValid()) 
+        {
+            $project->setCompany($company);
+            $project->setCreatedAt(new DateTimeImmutable('NOW'));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($project);
+            $entityManager->flush();
+
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
         }
         
         return $this->render('content/company/show.html.twig', [
             'company' => $company,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'form_customer' => $form_customer->createView(),
+            'form_project' => $form_project->createView()
         ]);
     }
 
@@ -102,7 +140,7 @@ class CompanyController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="company_delete", methods={"POST"})
+     * @Route("/delete/{id}", name="company_delete", methods={"POST"})
      */
     public function delete(Request $request, Company $company): Response
     {

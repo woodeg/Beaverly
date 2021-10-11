@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{task.taskName}} bearbeiten{% endblock %}
+
+{% block body %}
+    <h1>{{task.taskName}} bearbeiten</h1>
+
+    {{ include('content/task/_form.html.twig') }}
+
+    {{ include('elements/buttons/backbutton.html.twig') }}
+
+    {{ include('content/task/_delete_form.html.twig') }}
+{% endblock %}

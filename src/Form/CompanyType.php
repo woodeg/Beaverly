@@ -18,12 +18,31 @@ class CompanyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('companyName', TextType::class, ['attr' => ['class' => 'form-control']])
-            ->add('companyDescription', TextareaType::class, ['attr' => ['class' => 'form-control']])
+            ->add('companyName', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Name',
+                    'class' => 'mb-2'
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating',
+                ],
+                ])
+            ->add('companyDescription', TextareaType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
             ->add('label', EntityType::class, [
                 'class' => Label::class, 
                 'choice_label' => 'labelName',
-                'attr' => ['class' => 'form-select']
+                'attr' => [
+                    'placeholder' => 'Name'
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating mb-2',
+                ],
             ])
         ;
     }

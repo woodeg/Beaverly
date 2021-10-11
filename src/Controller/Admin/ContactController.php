@@ -90,7 +90,7 @@ class ContactController extends AbstractController
         }
 
         $referer = $request->headers->get('referer');
-            return $this->redirect($referer);
+        return $this->redirect($referer);
 
         /* return $this->redirectToRoute('admin_contact_index', [], Response::HTTP_SEE_OTHER); */
     }

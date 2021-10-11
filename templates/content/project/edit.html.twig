@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{project.projectName}} bearbeiten{% endblock %}
+
+{% block body %}
+    <h1>{{project.projectName}} bearbeiten</h1>
+
+    {{ include('content/project/_form.html.twig') }}
+
+    {{ include('elements/buttons/backbutton.html.twig') }}
+
+    {{ include('content/project/_delete_form.html.twig') }}
+{% endblock %}

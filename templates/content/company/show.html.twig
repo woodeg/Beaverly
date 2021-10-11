@@ -24,17 +24,60 @@
             <tr>
                 <th>Projekte</th>
                 <td>
+                    <p>
+                        <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseProject" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Projekt hinzufügen
+                        </a>
+                    </p>
+                    <div class="collapse mb-3" id="collapseProject">
+                        <div class="card card-body">
+                            {{ form_start(form_project) }}
+                            {{ form_widget(form_project.company, {'attr': {'class': 'd-none'}}) }}
+                            {{ form_widget(form_project) }}
+                                <button class="btn btn-success">{{ button_label|default('Speichern') }}</button>
+                            {{ form_end(form_project) }}
+                        </div>
+                    </div>
+
                     {% for project in company.projects %}
-                    <a href="#">
-                        {{project.projectName}}
+                    <a href="{{ path('project_show', {'id': project.id}) }}">
+                        {{project.projectName}} 
+                        <span class="
+                        {% if project.status.statusName == "To do" %}
+                        badge bg-primary
+                        {% elseif project.status.statusName == "In progress" %}
+                        badge bg-success
+                        {% elseif project.status.statusName == "On Hold" %}
+                        badge bg-warning
+                        {% elseif project.status.statusName == "Problem" %}
+                        badge bg-danger
+                        {% else %}
+                        badge bg-secondary
+                        {% endif %}
+                        ">{{ project.status.statusName }}</span>
+                        <br>
                     </a>
-                    <br>
                     {% endfor %}
                 </td>
             </tr>
             <tr>
-                <th>Ansprechspartner</th>
+                <th>Ansprechpartner</th>
                 <td>
+                    <p>
+                        <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseCustomer" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Ansprechpartner hinzufügen
+                        </a>
+                    </p>
+                    <div class="collapse" id="collapseCustomer">
+                        <div class="card card-body">
+                            {{ form_start(form_customer) }}
+                            {{ form_widget(form_customer.company, {'attr': {'class': 'd-none'}}) }}
+                            {{ form_widget(form_customer) }}
+                                <button class="btn btn-success">{{ button_label|default('Speichern') }}</button>
+                            {{ form_end(form_customer) }}
+                        </div>
+                    </div>
+
                     {% for customer in company.customers %}
                     <span class="badge bg-info text-dark">{{customer.position}}</span>
                     <a href="{{ path('customer_show', {'id': customer.id}) }}">
@@ -57,7 +100,7 @@
                         <div class="card card-body">
                             {{ form_start(form) }}
                             {{ form_widget(form) }}
-                                <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+                                <button class="btn btn-success">{{ button_label|default('Speichern') }}</button>
                             {{ form_end(form) }}
                         </div>
                     </div>
@@ -66,7 +109,7 @@
                             {{ contact.street }}, {{ contact.house }} <br>
                             {{ contact.postCode }} {{ contact.city }} <br>
                             <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> <br>
-                            <a href="https://{{ contact.webpage }}" target="_blank">{{ contact.webpage }}</a><br>
+                            <a href="{{ contact.webpage }}" target="_blank">{{ contact.webpage }}</a><br>
                             <a href="tel:{{contact.phoneNumber}}">Tel.: {{contact.phoneNumber}}</a><br>
                             <a href="tel:{{contact.mobileNumber}}">Mobile: {{contact.mobileNumber}}</a><br>
                             <form method="post" action="{{ path('admin_contact_delete', {'id': contact.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
@@ -82,7 +125,7 @@
 
     {{ include('elements/buttons/backbutton.html.twig') }}
 
-    <a href="{{ path('company_edit', {'id': company.id}) }}" class="btn btn-success">Speichern</a>
+    <a href="{{ path('company_edit', {'id': company.id}) }}" class="btn btn-success">Bearbeiten</a>
 
     {{ include('content/company/_delete_form.html.twig') }}
 {% endblock %}

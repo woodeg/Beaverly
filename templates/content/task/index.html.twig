@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aufgaben{% endblock %}
+
+{% block body %}
+    <h1>Aufgaben</h1>
+    <a href="{{ path('task_new') }}" class="btn btn-success">Neu</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Projekt</th>
+                <th>User</th>
+                <th>Status</th>
+                <th>Deadline</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.taskName }}</td>
+
+                <td>
+                    <a href="{{ path('project_show', {'id': task.project.id}) }}">
+                        {{task.project.projectName}}
+                    </a>
+                </td>
+
+                <td>
+                    {{task.user.firstName}} 
+                    {{task.user.lastName}}
+                    <br>
+                </td>
+
+                <td>
+                    <span class="
+                    {% if task.status.statusName == "To do" %}
+                    badge bg-primary
+                    {% elseif task.status.statusName == "In progress" %}
+                    badge bg-success
+                    {% elseif task.status.statusName == "On Hold" %}
+                    badge bg-warning
+                    {% elseif task.status.statusName == "Problem" %}
+                    badge bg-danger
+                    {% else %}
+                    badge bg-secondary
+                    {% endif %}
+                    ">{{ task.status.statusName }}</span>
+                </td>
+                <td>
+                    {{ task.deadline|date("d/m/Y", "Europe/Berlin") }}
+                </td>
+                <td>
+                    <a href="{{ path('task_show', {'id': task.id}) }}" class="btn btn-success btn-sm m-1">show</a>
+                    <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-success btn-sm m-1">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -65,6 +65,8 @@
     </table>
 
     {{ include('elements/buttons/backbutton.html.twig') }}
-    <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="btn btn-success">Speichern</a>
+    <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="btn btn-success">Bearbeiten</a>
     {{ include('content/customer/_delete_form.html.twig') }}
+
+
 {% endblock %}

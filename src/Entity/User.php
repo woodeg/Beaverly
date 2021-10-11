@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $tasks;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="user", orphanRemoval=true)
      */
     private $contact;
 

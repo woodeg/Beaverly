@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projekte{% endblock %}
+
+{% block body %}
+    <h1>Projekte</h1>
+    <a href="{{ path('project_new') }}" class="btn btn-success">Neu</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Aufgabe</th>
+                <th>Ansprechspartner</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Deadline</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in companies %}
+            <tr>
+                <td>{{ project.projectName }}</td>
+
+                <td>
+                    <a href="{{ path('company_show', {'id': project.company.id}) }}">
+                        {{project.company.companyName}}
+                    </a>
+                </td>
+
+                <td>
+                    {% for task in project.tasks %}
+                    <a href="{{ path('task_show', {'id': task.id}) }}">
+                        {{task.taskName}} 
+                        <br>
+                    </a>
+                    {% endfor %}
+                </td>
+
+                <td>
+                    {% for customer in project.company.customers %}
+                    <a href="{{ path('customer_show', {'id': customer.id}) }}">
+                        {{customer.firstName}} 
+                        {{customer.lastName}}
+                        <br>
+                    </a>
+                    {% endfor %}
+                </td>
+
+                <td>
+                    <span class="
+                    {% if project.status.statusName == "To do" %}
+                    badge bg-primary
+                    {% elseif project.status.statusName == "In progress" %}
+                    badge bg-success
+                    {% elseif project.status.statusName == "On Hold" %}
+                    badge bg-warning
+                    {% elseif project.status.statusName == "Problem" %}
+                    badge bg-danger
+                    {% else %}
+                    badge bg-secondary
+                    {% endif %}
+                    ">{{ project.status.statusName }}</span>
+                </td>
+
+                <td>
+                    {{ project.type.typeName }}
+                </td>
+                <td>
+                    {{ project.deadline|date("m/d/Y", "Europe/Berlin") }}
+                </td>
+                <td>
+                    <a href="{{ path('project_show', {'id': project.id}) }}" class="btn btn-success btn-sm m-1">show</a>
+                    <a href="{{ path('project_edit', {'id': project.id}) }}" class="btn btn-success btn-sm m-1">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

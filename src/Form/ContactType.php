@@ -17,17 +17,83 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('country', TextType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('region', TextType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('postCode', TextType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('street', TextType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('house', TextType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('email', EmailType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('webpage', UrlType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('description', TextareaType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('city', TextType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('phoneNumber', TelType::class, ['attr' => ['class' => 'form-control form-control-sm']])
-            ->add('mobileNumber', TelType::class, ['attr' => ['class' => 'form-control form-control-sm mb-2']])
+            ->add('country', TextType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('region', TextType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('postCode', TextType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('street', TextType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('house', TextType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('email', EmailType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('webpage', UrlType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('description', TextareaType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('city', TextType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('phoneNumber', TelType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
+            ->add('mobileNumber', TelType::class, ['attr' => [
+                'placeholder' => 'Name',
+                'class' => 'mb-2'
+            ],
+            'row_attr' => [
+                'class' => 'form-floating',
+            ],])
         ;
     }
 

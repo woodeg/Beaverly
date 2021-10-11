@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit customer{% endblock %}
+{% block title %}{{customer.firstName}} {{customer.lastName}} bearbeiten{% endblock %}
 
 {% block body %}
-    <h1>Edit {{customer.firstName}} {{customer.lastName}}</h1>
+    <h1>{{customer.firstName}} {{customer.lastName}} bearbeiten</h1>
 
     {{ include('content/customer/_form.html.twig') }}
 

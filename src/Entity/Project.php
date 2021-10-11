@@ -58,7 +58,7 @@ class Project
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="project")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="project", orphanRemoval=true)
      */
     private $tasks;
 
@@ -71,6 +71,7 @@ class Project
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $updatedAt;
+
 
     public function __construct()
     {

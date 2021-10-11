@@ -46,7 +46,7 @@ class Customer
     private $company;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="customer")
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="customer", orphanRemoval=true)
      */
     private $contact;
 
@@ -183,4 +183,5 @@ class Customer
 
         return $this;
     }
+
 }

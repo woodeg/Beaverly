@@ -131,3 +131,25 @@ Framework: Symfony
 * Add new contacts to Customers
 * Templates rework
 * Add to GIT
+
+#### 18.10.2021
+
+* Create CRUD for Projects
+* Change template
+* Templates rework
+* Relate Projects, Customer and Company template
+* Tests
+* Templates rework
+* Force database *symfony console doctrine:schema:update --force*
+
+#### 19.10.2021
+
+* Create CRUD for Tasks
+* Create form for Tasks
+* Add templates
+* Relate Projects and Company template
+* Tests
+* Add new tasks to projects_show
+* OrphanRemoval set to true for all ManyToOne (Delete relations)
+* Tests
+* Add to GIT

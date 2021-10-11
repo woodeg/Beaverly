@@ -35,17 +35,17 @@ class Company
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="company")
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="company", orphanRemoval=true)
      */
     private $contact;
 
     /**
-     * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="company")
+     * @ORM\OneToMany(targetEntity=Customer::class, mappedBy="company", orphanRemoval=true)
      */
     private $customers;
 
     /**
-     * @ORM\OneToMany(targetEntity=Project::class, mappedBy="company")
+     * @ORM\OneToMany(targetEntity=Project::class, mappedBy="company", orphanRemoval=true)
      */
     private $projects;
 

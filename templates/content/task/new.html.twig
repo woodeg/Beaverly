@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Neue Aufgabe{% endblock %}
+
+{% block body %}
+    <h1>Aufgabe einfügen</h1>
+
+    {{ include('content/task/_form.html.twig') }}
+
+    {{ include('elements/buttons/backbutton.html.twig') }}
+{% endblock %}

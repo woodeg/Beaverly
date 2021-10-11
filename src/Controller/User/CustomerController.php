@@ -71,7 +71,8 @@ class CustomerController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
-            return $this->redirectToRoute('customer', [], Response::HTTP_SEE_OTHER);
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
         }
 
         return $this->render('content/customer/show.html.twig', [
@@ -103,15 +104,13 @@ class CustomerController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="customer_delete", methods={"POST"})
+     * @Route("/delete/{id}", name="customer_delete", methods={"POST"})
      */
-    public function delete(Request $request, customer $customer): Response
+    public function delete(Request $request, Customer $customer): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$customer->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($customer);
-            $entityManager->flush();
-        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($customer);
+        $entityManager->flush();
 
         return $this->redirectToRoute('customer', [], Response::HTTP_SEE_OTHER);
     }
