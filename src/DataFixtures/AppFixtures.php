@@ -52,7 +52,6 @@ class AppFixtures extends Fixture
         $product->setRoles(['ROLE_ADMIN']);
         $product->setUserDescription('Test User/Administrator from Fixtures');
         $product->setGroups($group);
-        $product->setContact($contact);
 
         $manager->persist($product);
         $manager->flush();

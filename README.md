@@ -153,3 +153,5 @@ Framework: Symfony
 * OrphanRemoval set to true for all ManyToOne (Delete relations)
 * Tests
 * Add to GIT
+* Install pagination bundle *composer require knplabs/knp-paginator-bundle*
+* Add to GIT

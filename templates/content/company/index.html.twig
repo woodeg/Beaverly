@@ -9,8 +9,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Label</th>
+                <div class="navigation mb-2 mt-2">
+                    {{ knp_pagination_render(companies) }}
+                </div>
+                <!-- <div class="count">
+                    {{ companies.getTotalItemCount }}
+                </div> -->
+            </tr>
+            <tr>
+                <th{% if companies.isSorted('companyName') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(companies, 'Name', 'companyName') }}
+                </th>
+                <th{% if companies.isSorted('label.labelName') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(companies, 'Label', 'label.labelName') }}
+                </th>
+                <!-- <th>Name</th> -->
+                <!-- <th>Label</th> -->
                 <th colspan="2">Projekte</th>
                 <th>Ansprechspartner</th>
                 <th>Kontakte</th>
@@ -88,4 +102,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation mb-2 mt-2">
+        {{ knp_pagination_render(companies) }}
+    </div>
 {% endblock %}
